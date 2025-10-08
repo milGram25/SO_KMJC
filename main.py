@@ -73,7 +73,6 @@ class VentanaPrincipal(QtWidgets.QDialog):
     
         proceso=self.fila.pop(0)
         self.actualizar_scroll()
-
         self.thread=ProcesoThread(proceso)
         self.thread.actualizar.connect(self.ui.textBrowserInProcess.setText)
         self.thread.start()
