@@ -12,7 +12,11 @@ def quicksort(arr):
     #Caso base: si la lista tiene 0 o 1 elemento, ya está ordenada
     if len(arr) <= 1:
         return arr
-    else:
+    pivot=arr[0]
+    less=[x for x in arr[1:] if x.tiempo < pivot.tiempo]
+    greater = [x for x in arr[1:] if x.tiempo >= pivot.tiempo]
+    return quicksort(less) + [pivot] + quicksort(greater)
+    '''else:
         #Elige el primer proceso como pivote
         pivot = arr[0]
         #Procesos con tiempo menor al pivote
@@ -20,7 +24,7 @@ def quicksort(arr):
         #Procesos con tiempo mayor o igual al pivote
         greater_than_pivot = [x for x in arr[1:] if x.tiempo >= pivot.tiempo]
         #Ordena recursivamente y combina las listas con el pivote en el medio
-        return quicksort(less_than_pivot) + [pivot] + quicksort(greater_than_pivot)
+        return quicksort(less_than_pivot) + [pivot] + quicksort(greater_than_pivot)'''
 
 #Crea una lista con tres procesos, cada uno con nombre y tiempo de ejecución
 fila = [Proceso('Opera', 10), Proceso('Calculadora', 8), Proceso('Word', 9)]

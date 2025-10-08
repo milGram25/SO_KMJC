@@ -56,11 +56,7 @@ class VentanaPrincipal(QtWidgets.QDialog):
         # Limpia y actualiza el contenido anterior del scroll area
         old_layout = self.ui.scrollAreaWidgetContents.layout()
         if old_layout is not None:
-            while old_layout.count():
-                item = old_layout.takeAt(0)
-                widget = item.widget()
-                if widget is not None:
-                    widget.deleteLater()
+            QtWidgets.QWidget().setLayout(old_layout)
         self.ui.scrollAreaWidgetContents.setLayout(layout)
         #Muestra en tiempo total de espera
         total=sum(p.tiempo for p in self.fila)
@@ -69,16 +65,17 @@ class VentanaPrincipal(QtWidgets.QDialog):
     def ejecutar_proceso(self):
         if not self.fila:
             self.ui.textBrowserInProcess.setText("No hay procesos en la fila")
-        return
-    
+            return
+
         proceso=self.fila.pop(0)
         self.actualizar_scroll()
+
         self.thread=ProcesoThread(proceso)
         self.thread.actualizar.connect(self.ui.textBrowserInProcess.setText)
         self.thread.start()
     
     def cancelar_proceso(self):
-        if hasattr(self, 'thread') and self.thread.isRunning():
+        if isinstance(getattr(self, 'thread', None), QThread) and self.thread.isRunning():
             self.thread.terminate()
             #terminate() detiene el hilo abruptamente. 
             # No es lo más elegante, pero para esto es funcional 

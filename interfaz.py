@@ -88,10 +88,10 @@ class Ui_Dialog(object):
         self.LabelProcess_3.setObjectName("LabelProcess_3")
 
         self.retranslateUi(Dialog)
-        self.ButtonProces.clicked.connect(self.lineNameProceso.copy) # type: ignore
-        self.ButtonProces.clicked.connect(self.lineProceso.copy) # type: ignore
-        self.ButtonProces.clicked.connect(self.lineNameProceso.clear) # type: ignore
-        self.ButtonProces.clicked.connect(self.lineProceso.clear) # type: ignore
+        #self.ButtonProces.clicked.connect(self.lineNameProceso.copy) # type: ignore
+        #self.ButtonProces.clicked.connect(self.lineProceso.copy) # type: ignore
+        #self.ButtonProces.clicked.connect(self.lineNameProceso.clear) # type: ignore
+        #self.ButtonProces.clicked.connect(self.lineProceso.clear) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
