@@ -97,7 +97,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.LabelNameProcess.setText(_translate("Dialog", "Inserte nombre del un Proceso"))
+        self.LabelNameProcess.setText(_translate("Dialog", "Inserte nombre del Proceso"))
         self.ButtonProces.setText(_translate("Dialog", "INSERT"))
         self.LabelProcess.setText(_translate("Dialog", "Inserte tiempo del Proceso"))
         self.LabelProcess_2.setText(_translate("Dialog", "Lista de Procesos"))
