@@ -68,6 +68,13 @@ class Ui_Dialog(object):
         self.textBrowserInProcess = QtWidgets.QTextBrowser(Dialog)
         self.textBrowserInProcess.setGeometry(QtCore.QRect(10, 320, 256, 192))
         self.textBrowserInProcess.setObjectName("textBrowserInProcess")
+        self.ButtonEjecutar = QtWidgets.QPushButton(Dialog)
+        self.ButtonEjecutar.setGeometry(QtCore.QRect(280, 320, 100, 27))
+        self.ButtonEjecutar.setObjectName("ButtonEjecutar")
+        self.ButtonCancelar = QtWidgets.QPushButton(Dialog)
+        self.ButtonCancelar.setGeometry(QtCore.QRect(280, 360, 100, 27))
+        self.ButtonCancelar.setObjectName("ButtonCancelar")
+
         self.LabelProcess_3 = QtWidgets.QLabel(Dialog)
         self.LabelProcess_3.setEnabled(True)
         self.LabelProcess_3.setGeometry(QtCore.QRect(10, 290, 261, 20))
@@ -95,6 +102,9 @@ class Ui_Dialog(object):
         self.LabelProcess.setText(_translate("Dialog", "Inserte tiempo del Proceso"))
         self.LabelProcess_2.setText(_translate("Dialog", "Lista de Procesos"))
         self.LabelProcess_3.setText(_translate("Dialog", "Proceso en Ejecución"))
+        self.ButtonEjecutar.setText(_translate("Dialog", "EJECUTAR"))
+        self.ButtonCancelar.setText(_translate("Dialog", "CANCELAR"))
+
 
 
 if __name__ == "__main__":

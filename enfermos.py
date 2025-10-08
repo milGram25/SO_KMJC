@@ -64,7 +64,7 @@ def menu(fila):
                 tiempo = int(input("Ingrese el tiempo de ejecución (en segundos): "))
                 fila = agregar_proceso(nombre, tiempo, fila)                
             case '2':
-                if len() > 0:
+                if len(fila) > 0:
                     proceso = fila[0]
                     ejecutar_proceso(proceso)
                     time.sleep(2)  # Simula espera entre procesos
@@ -77,4 +77,6 @@ def menu(fila):
             case _:
                 print("Opción no válida. Intente de nuevo.")
 
-menu(fila)
+if __name__ == "__main__":
+    mostrar_fila(fila)
+    menu(fila)
