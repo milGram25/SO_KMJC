@@ -66,12 +66,19 @@ class VentanaPrincipal(QtWidgets.QDialog):
         if not self.fila:
             self.ui.textBrowserInProcess.setText("No hay procesos en la fila")
             return
+        self.ejecutar_siguiente()
 
+    
+    def ejecutar_siguiente(self):
+        if not self.fila:
+            self.ui.textBrowserInProcess.setText("Todos los procesos han sido ejecutados")
+            return
         proceso=self.fila.pop(0)
         self.actualizar_scroll()
 
-        self.thread=ProcesoThread(proceso)
+        self.thread = ProcesoThread(proceso)
         self.thread.actualizar.connect(self.ui.textBrowserInProcess.setText)
+        self.thread.finished.connect(self.ejecutar_siguiente)  # Ejecuta el siguiente al terminar
         self.thread.start()
     
     def cancelar_proceso(self):
