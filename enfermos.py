@@ -49,4 +49,11 @@ mostrar_fila(fila)
 def ejecutar_proceso(fila):
     for Proceso.tiempo in fila:
         restante = Proceso.tiempo-1
-        #while
+        while restante > 0:
+            print(f'Ejecutando {Proceso.nombre}, tiempo restante: {restante} segundos')
+            restante -= 1
+        print(f'Proceso {Proceso.nombre} finalizado.\n')    
+    fila.remove(Proceso)
+    return fila
+
+ejecutar_proceso(fila)
