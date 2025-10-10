@@ -4,6 +4,7 @@ from interfaz import Ui_Dialog
 from enfermos import Proceso, quicksort
 import sys
 from PyQt5.QtCore import QThread, pyqtSignal
+import random
 
 class ProcesoThread(QThread):
     actualizar=pyqtSignal(str)
@@ -17,7 +18,8 @@ class ProcesoThread(QThread):
         while restante > 0:
             self.actualizar.emit(f'Ejecutando {self.proceso.nombre}, tiempo restante: {restante} segundos\n')
             self.sleep(1)  # Simula el tiempo de ejecución
-            restante -= 1
+            if random.randint(1, 10) != 1:  # 10% de probabilidad de fallo
+                restante -= 1
         self.actualizar.emit(f'Proceso {self.proceso.nombre} finalizado.\n')
 
 

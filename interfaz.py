@@ -99,7 +99,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.LabelNameProcess.setText(_translate("Dialog", "Inserte nombre del Proceso"))
         self.ButtonProces.setText(_translate("Dialog", "INSERT"))
-        self.LabelProcess.setText(_translate("Dialog", "Inserte tiempo del Proceso"))
+        self.LabelProcess.setText(_translate("Dialog", "Tiempo estimado del Proceso"))
         self.LabelProcess_2.setText(_translate("Dialog", "Lista de Procesos"))
         self.LabelProcess_3.setText(_translate("Dialog", "Proceso en Ejecución"))
         self.ButtonEjecutar.setText(_translate("Dialog", "EJECUTAR"))
