@@ -11,33 +11,33 @@ class Filosofo:
         return f'Filosofo {self.id}: {self.tiempo_comer} segundos comiendo'
     
 # Crear filosofos
+filosofos=[]
 for i in range(5):
-    Filosofo(i)
+    filosofos.append(Filosofo(i))
 
 #Elegir los filosofos que comen primero
 turno = random.randint(0,4)
-comiendo1 = Filosofo(turno)
+comiendo1 = filosofos[turno]
 #Si el indice se desborda, se va a los primeros, para hacer una lsita circular
-comiendo2 = Filosofo(turno-3 if turno>=3 else turno+2)
+comiendo2 = filosofos[turno-3] if turno >= 3 else filosofos[turno+2]
 
 #Funcion para que los filosofos coman
 def comer(filosofo):
     #Aumenta el tiempo de comer de los filósofos que están comiendo
-    filosofo.tiempo_comer += 5
+    filosofo.tiempo_comer += 1
     print(filosofo)
-    print('Ya comio 1')
-
-    #Avanza el turno a los siguientes filósofos
-    return Filosofo(avanzar(comiendo1))
-    
-def avanzar(filosofo):
-    if filosofo.id == 4:
-        return filosofo.id - 4
-    else:
-        return filosofo.id + 1
+    return
 
 while True:
-    comiendo1=comer(comiendo1)
-    comiendo2=comer(comiendo2)
+    #Empiezan a comer los dos filosofos
+    for i in range(5):
+        comer(comiendo1)
+        comer(comiendo2)
+        time.sleep(1)
+    
+    #Cambian los filosofos que estan comiendo
+    comiendo1 = filosofos[comiendo1.id-4] if comiendo1.id == 4 else filosofos[comiendo1.id+1]
+    comiendo2 = filosofos[comiendo2.id-4] if comiendo2.id == 4 else filosofos[comiendo2.id+1]
+    print('---')
     time_sleep = random.randint(1,3)
     time.sleep(time_sleep)
