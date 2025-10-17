@@ -13,7 +13,7 @@ class Filosofo:
 
     def comer(self):
         # Aumenta el tiempo de comer del filósofo
-        self.tiempo_comer += 1
+        self.tiempo_comer += 3
         self.label.setStyleSheet("background-color: green; color: white;")
         self.label.setToolTip(f"{self.tiempo_comer} segundos comiendo")
         print(f'Filosofo {self.id}: {self.tiempo_comer} segundos comiendo')
@@ -54,7 +54,7 @@ class Mesa(QtWidgets.QDialog):
         self.ui.pushButtonNoComer.clicked.connect(self.no_comer)
 
     def comer(self):
-        self.timer.start(1000)  # Actualiza cada segundo
+        self.timer.start(3000)  # Actualiza cada 5 segundos
 
     def no_comer(self):
         self.timer.stop()
