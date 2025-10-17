@@ -24,6 +24,7 @@ class Filosofo:
         self.label.setToolTip("")
 
 # Clase prinicipal para controlar la interfaz y la lógica
+# Soy un papu pro
 class Mesa(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
