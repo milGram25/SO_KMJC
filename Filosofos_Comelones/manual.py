@@ -83,8 +83,14 @@ class Mesa(QtWidgets.QDialog):
 
         if self.contador >= 1:
             # Cambio de turno
-            self.comiendo1 = self.filosofos[(self.comiendo1.id + 1) % 5]
-            self.comiendo2 = self.filosofos[(self.comiendo2.id + 1) % 5]
+            combinaciones_posibles = []
+            for i in range(len(self.filosofos)):
+                for j in range(i + 1,len(self.filosofos)):
+                    if abs(i - j) != 1 and abs(i - j) != 4:
+                        combinaciones_posibles.append((self.filosofos[i], self.filosofos[j]))
+
+        if combinaciones_posibles:
+            self.comiendo1, self.comiendo2 = random.choice(combinaciones_posibles)
             self.estado= "comiendo"
             self.contador = 0
 
