@@ -10,12 +10,11 @@ class Filosofo:
         self.id = id
         self.label = label
         self.tiempo_comer = 0
-        self.comiendo = False
 
-    def comer(self, tiempo):
+    def comer(self):
         # Aumenta el tiempo de comer del filósofo
         ##### Cambiar tiempo de comer de los filósofos
-        self.tiempo_comer += tiempo/1000  # Convertir milisegundos a segundos
+        self.tiempo_comer += 3
         self.label.setStyleSheet("background-color: green; color: white;")
         self.label.setToolTip(f"{self.tiempo_comer} segundos comiendo")
         print(f'Filosofo {self.id}: {self.tiempo_comer} segundos comiendo')
@@ -44,13 +43,9 @@ class Mesa(QtWidgets.QDialog):
         ]
 
         # Elegir los filósofos que comen primero
-        while True:
-            time.sleep(random.randint(3, 5))
-            turno = random.randint(0, 4)
-            quererComer(self.filosofos, turno)
-            if (random.randint(0,1) == 0):
-                break
-        
+        turno = random.randint(0, 4)
+        self.comiendo1 = self.filosofos[turno]
+        self.comiendo2 = self.filosofos[turno - 3] if turno >= 3 else self.filosofos[turno + 2]
 
         #Temporizador para el ciclo de comer
         self.timer = QtCore.QTimer()
@@ -60,19 +55,17 @@ class Mesa(QtWidgets.QDialog):
         self.ui.pushButtonComer.clicked.connect(self.comer)
         self.ui.pushButtonNoComer.clicked.connect(self.no_comer)
 
-##### Cambiar tiempo de comer de los filósofos
-def comer(filosofo):
-    tiempo_comer = random.randint(1000, 10000)  # Tiempo aleatorio entre 1 y 3 segundos
-    filosofo.timer.start(tiempo_comer)  # Actualiza cada 5 segundos
-    filosofo.comer(tiempo_comer)
+    ##### Cambiar tiempo de comer de los filósofos
+    def comer(self):
+        self.timer.start(3000)  # Actualiza cada 5 segundos
 
-def no_comer(self):
-    self.timer.stop()
-    for f in self.filosofos:
-        f.tiempo_comer = 0
-        f.no_comer()
+    def no_comer(self):
+        self.timer.stop()
+        for f in self.filosofos:
+            f.tiempo_comer = 0
+            f.no_comer()
     
-    """def actualizar_turno(self):
+    def actualizar_turno(self):
         if self.estado == "comiendo":
             for f in self.filosofos:
                 f.no_comer()
@@ -93,29 +86,7 @@ def no_comer(self):
             self.comiendo1 = self.filosofos[(self.comiendo1.id + 1) % 5]
             self.comiendo2 = self.filosofos[(self.comiendo2.id + 1) % 5]
             self.estado= "comiendo"
-            self.contador = 0"""
-    
-# Elegir el segundo filósofo que come
-def quererComer(filosofos, turno):
-    # Si el índice se desborda, se va a los primeros, para hacer una lista circular
-    if (filosofos[turno+1].comiendo == True or filosofos[turno-1].comiendo == True):
-        return
-    else:
-        filosofos[turno].estado = "comiendo"
-        empezarComer(filosofos[turno])
-        return
-        
-def empezarComer(filosofo):
-        tiempo_comer = random.randint(1000, 10000)  # Tiempo aleatorio entre 1 y 3 segundos
-        filosofo.timer.start(tiempo_comer)  # Actualiza cada 5 segundos
-        filosofo.comer(tiempo_comer)
-        filosofo.timer = QtCore.QTimer()
-        filosofo.timer.timeout.connect(filosofo.no_comer)
-        
-#Funcion para avanzar
-
-#Funcion para retroceder
-
+            self.contador = 0
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
